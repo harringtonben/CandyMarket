@@ -65,10 +65,7 @@ namespace CandyMarket
         {
             foreach (var menuItem in menuItems)
             {
-                if (menuItem.Value > 0)
-                {
-                    EatMenuOption(menuItem.Key, menuItem.Value);
-                }         
+                    EatMenuOption(menuItem.Key, menuItem.Value);      
             }
 
             return this;
