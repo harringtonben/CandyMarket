@@ -42,7 +42,7 @@ namespace CandyMarket
 						 * 
 						 * enjoy candy
 						 */
-                        var candyToEat = AddNewCandyType(db);
+                        var candyToEat = EatSomeCandy(db);
                         db.EatCandy(candyToEat.KeyChar);
 						break;
 					case '3':
@@ -116,5 +116,20 @@ namespace CandyMarket
 			ConsoleKeyInfo selectedCandyType = Console.ReadKey();
 			return selectedCandyType;
 		}
-	}
+
+        static ConsoleKeyInfo EatSomeCandy(DatabaseContext db)
+        {
+            var candyTypes = db.GetCandyTypes();
+            var candyCount = db.GetCandyCounts();
+
+            var newCandyMenu = new View()
+                    .AddMenuText("What type of candy do you want to eat?")
+                    .EatMenuOptions(candyCount);
+
+            Console.Write(newCandyMenu.GetFullMenu());
+
+            ConsoleKeyInfo selectedCandyType = Console.ReadKey();
+            return selectedCandyType;
+        }
+    }
 }
