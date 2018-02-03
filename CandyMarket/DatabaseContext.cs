@@ -66,7 +66,7 @@ namespace CandyMarket
             switch (eatenCandy)
             {
                 case CandyType.TaffyNotLaffy:
-                    --_countOfTaffy;
+                     --_countOfTaffy;
                     break;
                 case CandyType.CandyCoated:
                     --_countOfCandyCoated;
