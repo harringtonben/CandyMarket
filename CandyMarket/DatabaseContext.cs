@@ -54,5 +54,10 @@ namespace CandyMarket
 					break;
 			}
 		}
-	}
+
+        internal void EatCandy(char selectedCandyMenuOption)
+        {
+            var candyOption = int.Parse(selectedCandyMenuOption.ToString());
+        }
+    }
 }

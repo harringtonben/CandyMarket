@@ -35,13 +35,15 @@ namespace CandyMarket
 						db.SaveNewCandy(selectedCandyType.KeyChar);
 						break;
 					case '2':
-						/** eat candy
+                        /** eat candy
 						 * select a candy type
 						 * 
 						 * select specific candy details to eat from list filtered to selected candy type
 						 * 
 						 * enjoy candy
 						 */
+                        var candyToEat = AddNewCandyType(db);
+                        db.EatCandy(candyToEat.KeyChar);
 						break;
 					case '3':
 						/** throw away candy
