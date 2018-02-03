@@ -128,20 +128,52 @@ namespace CandyMarket
             switch (eatenCandy)
             {
                 case CandyType.TaffyNotLaffy:
-                    Console.WriteLine();
-                    Console.WriteLine("How much candy do you want to give away?");
-                    var giveaway = Console.ReadLine();
-                    var subtractMe = int.Parse(giveaway.ToString());
-                    _countOfTaffy = _countOfTaffy - subtractMe;
+                    var subtractMe = GiveAwayCandy();
+                    if (subtractMe <= _countOfTaffy)
+                    {
+                        _countOfTaffy = _countOfTaffy - subtractMe;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You don't have enough candy to give {subtractMe} pieces away. Press Enter to try again");
+                        Console.ReadLine();
+                    }
                     break;
                 case CandyType.CandyCoated:
-                    _countOfCandyCoated = 0;
+                    subtractMe = GiveAwayCandy();
+                    if (subtractMe <= _countOfCandyCoated)
+                    {
+                        _countOfCandyCoated = _countOfCandyCoated - subtractMe;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You don't have enough candy to give {subtractMe} pieces away. Press Enter to try again");
+                        Console.ReadLine();
+                    }
                     break;
                 case CandyType.CompressedSugar:
-                    _countOfChocolateBar = 0;
+                    subtractMe = GiveAwayCandy();
+                    if (subtractMe <= _countOfChocolateBar)
+                    {
+                        _countOfChocolateBar = _countOfChocolateBar - subtractMe;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You don't have enough candy to give {subtractMe} pieces away. Press Enter to try again");
+                        Console.ReadLine();
+                    }
                     break;
                 case CandyType.ZagnutStyle:
-                    _countOfZagnut = 0;
+                    subtractMe = GiveAwayCandy();
+                    if (subtractMe <= _countOfZagnut)
+                    {
+                        _countOfZagnut = _countOfZagnut - subtractMe;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You don't have enough candy to give {subtractMe} pieces away. Press Enter to try again");
+                        Console.ReadLine();
+                    }
                     break;
                 default:
                     break;
@@ -159,6 +191,15 @@ namespace CandyMarket
             return CandyCounts;
         }
 
+        internal int GiveAwayCandy()
+        {
+            Console.WriteLine();
+            Console.WriteLine("How much candy do you want to give away?");
+            var giveaway = Console.ReadLine();
+            var numberToSubtract = int.Parse(giveaway.ToString());
+            return numberToSubtract;
+
+        }
         
     }
 }
