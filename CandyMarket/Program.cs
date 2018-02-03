@@ -46,7 +46,7 @@ namespace CandyMarket
                         db.EatCandy(candyToEat.KeyChar);
 						break;
 					case '3':
-						/** throw away candy
+                        /** throw away candy
 						 * select a candy type
 						 * if(moreDifficultDataModel) enhancement - give user the option to throw away old candy in one action. this would require capturing the detail of when the candy was new.
 						 * 
@@ -54,6 +54,8 @@ namespace CandyMarket
 						 * 
 						 * cry for lost candy
 						 */
+                        var throwItAway = ThrowAwayCandy(db);
+                        db.ThrowAwayCandy(candyToEat.KeyChar);
 						break;
 					case '4':
 						/** give candy
@@ -96,6 +98,7 @@ namespace CandyMarket
 			View mainMenu = new View()
 					.AddMenuOption("Did you just get some new candy? Add it here.")
 					.AddMenuOption("Do you want to eat some candy? Take it here.")
+                    .AddMenuOption("Do you want to throw some candy away? Take it to the dump here.")
 					.AddMenuText("Press 0 to exit.");
 
 			Console.Write(mainMenu.GetFullMenu());
@@ -124,6 +127,21 @@ namespace CandyMarket
 
             var newCandyMenu = new View()
                     .AddMenuText("What type of candy do you want to eat?")
+                    .EatMenuOptions(candyCount);
+
+            Console.Write(newCandyMenu.GetFullMenu());
+
+            ConsoleKeyInfo selectedCandyType = Console.ReadKey();
+            return selectedCandyType;
+        }
+
+        static ConsoleKeyInfo ThrowAwayCandy(DatabaseContext db)
+        {
+            var candyTypes = db.GetCandyTypes();
+            var candyCount = db.GetCandyCounts();
+
+            var newCandyMenu = new View()
+                    .AddMenuText("Which of this crap do you want to throw away?")
                     .EatMenuOptions(candyCount);
 
             Console.Write(newCandyMenu.GetFullMenu());

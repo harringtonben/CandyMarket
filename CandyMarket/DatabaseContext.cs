@@ -82,6 +82,31 @@ namespace CandyMarket
             }
         }
 
+        internal void ThrowAwayCandy(char selectedCandyMenuOption)
+        {
+            var candyOption = int.Parse(selectedCandyMenuOption.ToString());
+
+            var eatenCandy = (CandyType)candyOption;
+
+            switch (eatenCandy)
+            {
+                case CandyType.TaffyNotLaffy:
+                    _countOfTaffy = 0;
+                    break;
+                case CandyType.CandyCoated:
+                    _countOfCandyCoated = 0;
+                    break;
+                case CandyType.CompressedSugar:
+                    _countOfChocolateBar = 0;
+                    break;
+                case CandyType.ZagnutStyle:
+                    _countOfZagnut = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+
         internal Dictionary<string, int> GetCandyCounts()
         {
             CandyCounts.Clear();
