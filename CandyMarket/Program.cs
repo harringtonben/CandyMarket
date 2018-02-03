@@ -55,7 +55,7 @@ namespace CandyMarket
 						 * cry for lost candy
 						 */
                         var throwItAway = ThrowAwayCandy(db);
-                        db.ThrowAwayCandy(candyToEat.KeyChar);
+                        db.ThrowAwayCandy(throwItAway.KeyChar);
 						break;
 					case '4':
 						/** give candy

@@ -66,16 +66,28 @@ namespace CandyMarket
             switch (eatenCandy)
             {
                 case CandyType.TaffyNotLaffy:
-                     --_countOfTaffy;
+                    if (_countOfTaffy > 0)
+                    {
+                       --_countOfTaffy;
+                    }
                     break;
                 case CandyType.CandyCoated:
-                    --_countOfCandyCoated;
+                    if (_countOfCandyCoated > 0)
+                    {
+                        --_countOfCandyCoated;
+                    }
                     break;
                 case CandyType.CompressedSugar:
-                    --_countOfChocolateBar;
+                    if (_countOfChocolateBar > 0)
+                    {
+                        --_countOfChocolateBar;
+                    }
                     break;
                 case CandyType.ZagnutStyle:
-                    --_countOfZagnut;
+                    if (_countOfZagnut > 0)
+                    {
+                        --_countOfZagnut;
+                    }
                     break;
                 default:
                     break;
