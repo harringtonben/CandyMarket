@@ -35,13 +35,15 @@ namespace CandyMarket
 						db.SaveNewCandy(selectedCandyType.KeyChar);
 						break;
 					case '2':
-						/** eat candy
+                        /** eat candy
 						 * select a candy type
 						 * 
 						 * select specific candy details to eat from list filtered to selected candy type
 						 * 
 						 * enjoy candy
 						 */
+                        var candyToEat = EatSomeCandy(db);
+                        db.EatCandy(candyToEat.KeyChar);
 						break;
 					case '3':
 						/** throw away candy
@@ -114,5 +116,20 @@ namespace CandyMarket
 			ConsoleKeyInfo selectedCandyType = Console.ReadKey();
 			return selectedCandyType;
 		}
-	}
+
+        static ConsoleKeyInfo EatSomeCandy(DatabaseContext db)
+        {
+            var candyTypes = db.GetCandyTypes();
+            var candyCount = db.GetCandyCounts();
+
+            var newCandyMenu = new View()
+                    .AddMenuText("What type of candy do you want to eat?")
+                    .EatMenuOptions(candyCount);
+
+            Console.Write(newCandyMenu.GetFullMenu());
+
+            ConsoleKeyInfo selectedCandyType = Console.ReadKey();
+            return selectedCandyType;
+        }
+    }
 }

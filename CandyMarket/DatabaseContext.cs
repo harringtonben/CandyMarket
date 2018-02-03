@@ -12,6 +12,8 @@ namespace CandyMarket
 		private int _countOfChocolateBar;
 		private int _countOfZagnut;
 
+        public Dictionary<string, int> CandyCounts = new Dictionary<string, int>();
+
 		/**
 		 * this is just an example.
 		 * feel free to modify the definition of this collection "BagOfCandy" if you choose to implement the more difficult data model.
@@ -54,5 +56,41 @@ namespace CandyMarket
 					break;
 			}
 		}
-	}
+
+        internal void EatCandy(char selectedCandyMenuOption)
+        {
+            var candyOption = int.Parse(selectedCandyMenuOption.ToString());
+
+            var eatenCandy = (CandyType)candyOption;
+
+            switch (eatenCandy)
+            {
+                case CandyType.TaffyNotLaffy:
+                     --_countOfTaffy;
+                    break;
+                case CandyType.CandyCoated:
+                    --_countOfCandyCoated;
+                    break;
+                case CandyType.CompressedSugar:
+                    --_countOfChocolateBar;
+                    break;
+                case CandyType.ZagnutStyle:
+                    --_countOfZagnut;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        internal Dictionary<string, int> GetCandyCounts()
+        {
+            CandyCounts.Clear();
+            CandyCounts.Add("TaffyNotLaffy", _countOfTaffy);
+            CandyCounts.Add("CandyCoated", _countOfCandyCoated);
+            CandyCounts.Add("CompressedSugar", _countOfChocolateBar);
+            CandyCounts.Add("ZagnutStyle", _countOfZagnut);
+
+            return CandyCounts;
+        }
+    }
 }

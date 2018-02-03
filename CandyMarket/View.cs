@@ -43,7 +43,15 @@ namespace CandyMarket
 			return this;
 		}
 
-		internal View AddMenuOptions(IList<string> menuItems)
+        internal View EatMenuOption(string candy, int count)
+        {
+            ++itemNumber;
+            var menuEntry = $"{itemNumber}. {candy}: {count}";
+            _menuItems.Add(menuEntry);
+            return this;
+        }
+
+        internal View AddMenuOptions(IList<string> menuItems)
 		{
 			foreach (var menuItem in menuItems)
 			{
@@ -53,7 +61,20 @@ namespace CandyMarket
 			return this;
 		}
 
-		internal string GetFullMenu()
+        internal View EatMenuOptions(Dictionary<string, int> menuItems)
+        {
+            foreach (var menuItem in menuItems)
+            {
+                if (menuItem.Value > 0)
+                {
+                    EatMenuOption(menuItem.Key, menuItem.Value);
+                }         
+            }
+
+            return this;
+        }
+
+        internal string GetFullMenu()
 		{
 			Console.Clear();
 			var menu = string.Join(Environment.NewLine, _menuItems);
