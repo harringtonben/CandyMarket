@@ -58,7 +58,7 @@ namespace CandyMarket
                         db.ThrowAwayCandy(throwItAway.KeyChar);
 						break;
 					case '4':
-						/** give candy
+                        /** give candy
 						 * feel free to hardcode your users. no need to create a whole UI to register users.
 						 * no one is impressed by user registration unless it's just amazingly fast & simple
 						 * 
@@ -67,6 +67,8 @@ namespace CandyMarket
 						 * you'll need a way to select what user you're giving candy to.
 						 * one design suggestion would be to put candy "on the table" and then "give the candy on the table" to another user once you've selected all the candy to give away
 						 */
+                        var giveItAway = GiveAwayCandy(db);
+                        db.GiveAwayCandy(giveItAway.KeyChar);
 						break;
 					case '5':
 						/** trade candy
@@ -99,6 +101,7 @@ namespace CandyMarket
 					.AddMenuOption("Did you just get some new candy? Add it here.")
 					.AddMenuOption("Do you want to eat some candy? Take it here.")
                     .AddMenuOption("Do you want to throw some candy away? Take it to the dump here.")
+                    .AddMenuOption("Do you want to give some of this candy away? Kind of stupid, but do that here")
 					.AddMenuText("Press 0 to exit.");
 
 			Console.Write(mainMenu.GetFullMenu());
@@ -142,6 +145,21 @@ namespace CandyMarket
 
             var newCandyMenu = new View()
                     .AddMenuText("Which of this crap do you want to throw away?")
+                    .EatMenuOptions(candyCount);
+
+            Console.Write(newCandyMenu.GetFullMenu());
+
+            ConsoleKeyInfo selectedCandyType = Console.ReadKey();
+            return selectedCandyType;
+        }
+
+        static ConsoleKeyInfo GiveAwayCandy(DatabaseContext db)
+        {
+            var candyTypes = db.GetCandyTypes();
+            var candyCount = db.GetCandyCounts();
+
+            var newCandyMenu = new View()
+                    .AddMenuText("You want to give some of this stuff away?")
                     .EatMenuOptions(candyCount);
 
             Console.Write(newCandyMenu.GetFullMenu());

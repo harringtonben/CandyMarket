@@ -119,6 +119,35 @@ namespace CandyMarket
             }
         }
 
+        internal void GiveAwayCandy(char selectedCandyMenuOption)
+        {
+            var candyOption = int.Parse(selectedCandyMenuOption.ToString());
+
+            var eatenCandy = (CandyType)candyOption;
+
+            switch (eatenCandy)
+            {
+                case CandyType.TaffyNotLaffy:
+                    Console.WriteLine();
+                    Console.WriteLine("How much candy do you want to give away?");
+                    var giveaway = Console.ReadLine();
+                    var subtractMe = int.Parse(giveaway.ToString());
+                    _countOfTaffy = _countOfTaffy - subtractMe;
+                    break;
+                case CandyType.CandyCoated:
+                    _countOfCandyCoated = 0;
+                    break;
+                case CandyType.CompressedSugar:
+                    _countOfChocolateBar = 0;
+                    break;
+                case CandyType.ZagnutStyle:
+                    _countOfZagnut = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+
         internal Dictionary<string, int> GetCandyCounts()
         {
             CandyCounts.Clear();
@@ -129,5 +158,7 @@ namespace CandyMarket
 
             return CandyCounts;
         }
+
+        
     }
 }
